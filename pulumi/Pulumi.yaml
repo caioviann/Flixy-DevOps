@@ -1,0 +1,8 @@
+name: isn20261
+description: ISN 2026.1
+runtime:
+  name: go
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: go
