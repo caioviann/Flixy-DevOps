@@ -31,7 +31,7 @@ func main() {
 
 		// Create Lambda function
 		fn, err := lambda.NewFunction(ctx, "fn", &lambda.FunctionArgs{
-			Runtime: pulumi.String("go1.x"),
+			Runtime: pulumi.String("provided.al2"),
 			Handler: pulumi.String("handler"),
 			Role:    role.Arn,
 			Code:    pulumi.NewFileArchive("./function"),
