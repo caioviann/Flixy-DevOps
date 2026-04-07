@@ -1,16 +1,20 @@
 {
   "name": "Flixy Codespace",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
+  "image": "mcr.microsoft.com/devcontainers/go:1.22",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/pulumi:1": {}
   },
-  "remoteUser": "vscode",
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash"
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "amazonwebservices.aws-toolkit-vscode",
+        "pulumi.pulumi-vscode-tools",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
   },
   "postCreateCommand": "go mod tidy || true && pulumi plugin install resource aws v5.43.0 && pulumi plugin install resource aws-apigateway && pulumi plugin install resource awsx && pulumi plugin install resource docker",
-  "extensions": [
-    "golang.go",
-    "ms-azuretools.vscode-docker"
-  ]
+  "remoteUser": "vscode"
 }
