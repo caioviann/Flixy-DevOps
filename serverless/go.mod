@@ -4,12 +4,11 @@ go 1.21
 
 require (
 	github.com/pulumi/pulumi-aws-apigateway/sdk v1.0.1
-	github.com/pulumi/pulumi-aws/sdk/v6 v6.0.0
+	github.com/pulumi/pulumi-aws/sdk/v5 v5.43.0
 	github.com/pulumi/pulumi/sdk/v3 v3.81.0
 )
 
 require (
-	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20221026131551-cf6655e29de4 // indirect
 	github.com/acomagu/bufpipe v1.0.3 // indirect
@@ -56,9 +55,6 @@ require (
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pkg/term v1.1.0 // indirect
-	github.com/pulumi/pulumi-aws/sdk/v5 v5.43.0 // indirect
-	github.com/pulumi/pulumi-awsx/sdk v1.0.6 // indirect
-	github.com/pulumi/pulumi-docker/sdk/v3 v3.2.0 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect

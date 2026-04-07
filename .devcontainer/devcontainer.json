@@ -8,7 +8,7 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
-  "postCreateCommand": "go mod tidy || true",
+  "postCreateCommand": "go mod tidy || true && pulumi plugin install resource aws v5.43.0 && pulumi plugin install resource aws-apigateway && pulumi plugin install resource awsx && pulumi plugin install resource docker"
   "extensions": [
     "golang.go",
     "ms-azuretools.vscode-docker"
