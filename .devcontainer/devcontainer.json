@@ -1,0 +1,16 @@
+{
+  "name": "Flixy Codespace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "vscode",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "postCreateCommand": "go mod tidy || true",
+  "extensions": [
+    "golang.go",
+    "ms-azuretools.vscode-docker"
+  ]
+}
