@@ -6,8 +6,7 @@ USER root
 
 RUN rm -f /etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list.save \
     && apt-get update \
-    && apt-get install -y --no-install-recommends curl unzip python3 python3-pip \
-    && pip3 install awscli \
+    && apt-get install -y --no-install-recommends curl unzip python3 awscli \
     && curl -fsSL https://get.pulumi.com | sh \
     && ln -s /root/.pulumi/bin/pulumi /usr/local/bin/pulumi \
     && apt-get clean \
