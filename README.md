@@ -1,5 +1,24 @@
 # Flixy
 
+## Preparação do GitHub Codespaces
+
+Para facilitar o uso da nuvem pública, AWS, foi criado um repositório (monorepo) para uso compartilhado. Entretanto, cada usuário deve configurar suas variáveis de ambiente, o que inclui chaves de acesso.
+
+Para AWS:
+
+- `AWS_ACCESS_KEY_ID`: identificador da chave de acesso ao AWS.
+- `AWS_SECRET_ACCESS_KEY`: chave de acesso ao AWS, propriamente.
+- `AWS_DEFAULT_REGION`: região da AWS. Por convenção, na equipe será adotado por padrão São Paulo (`sa-east-1`).
+
+Fonte: [Configuring environment variables for the AWS CLI
+](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html).
+
+Para Pulumi:
+
+- `PULUMI_ACCESS_TOKEN`: chave de acesso ao Pulumi.
+
+Fonte: [pulumi login | CLI commands](https://www.pulumi.com/docs/iac/cli/commands/pulumi_login/).
+
 ## Requisitos
 
 São requisitos funcionais:
@@ -10,7 +29,6 @@ São requisitos funcionais:
 1. Permitir a troca de senha.
 4. Permitir recuperação de senha por email.
 1. Permitir a troca de email de cadastro, desde que ambos os emails sejam validados.
-1. Prover autorização com RBAC para controle de acesso de classificação etária e perfil familiar aos serviços da solução.
 1. Realizar log de todas as operações realizadas pelo usuário.
 1. Permitir que o usuário peça um filme para assistir, o qual será entregue de forma aleatória de um banco de dados online.
 1. Permitir que o usuário informe os serviços de *streaming* atualmente assinados para fazer um filtro dos possíveis filmes já sob demanda e para alugar ou comprar.
@@ -37,7 +55,7 @@ São requisitos não funcionais:
 
 ## Diagrama de blocos
 
-Melhorar:
+Com serviços de nome genérico:
 
 ```mermaid
 flowchart TD
@@ -91,6 +109,7 @@ flowchart TD
     P --> sql
     P --> tsdb
 ```
+
 Com serviços AWS:
 
 ```mermaid
@@ -103,12 +122,13 @@ end
 subgraph AWS
     subgraph Frontends
         Route53
+        CertificateManager
         CloudFront
         S3
     end
 
     subgraph Backends
-        APIGatewayWebSocket
+        APIGateway
         Lambda_WS
         DynamoDB
         SQS
@@ -130,9 +150,11 @@ end
 
 Usuário --> Route53
 Usuário --> CloudFront
+CloudFront --> CertificateManager
 CloudFront --> S3
-CloudFront --> APIGatewayWebSocket
-APIGatewayWebSocket --> Lambda_WS
+CloudFront --> APIGateway
+APIGateway --> Lambda_WS
+APIGateway --> S3
 Lambda_WS --> DynamoDB
 Lambda_WS --> SQS
 SQS --> Lambda_Proc
@@ -142,7 +164,7 @@ Lambda_Proc --> DynamoDB
 CloudWatch -.-> Route53
 CloudWatch -.-> CloudFront
 CloudWatch -.-> S3
-CloudWatch -.-> APIGatewayWebSocket
+CloudWatch -.-> APIGateway
 CloudWatch -.-> Lambda_WS
 CloudWatch -.-> DynamoDB
 CloudWatch -.-> SQS

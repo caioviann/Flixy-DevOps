@@ -1,8 +1,0 @@
-name: isn20261
-description: A Go program to deploy a serverless application on AWS
-runtime:
-  name: go
-config:
-  pulumi:tags:
-    value:
-      pulumi:template: serverless-aws-go
